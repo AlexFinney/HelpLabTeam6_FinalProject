@@ -1,0 +1,18 @@
+package main;
+
+public class DatabaseInteraction {
+
+	private String username = "Master";
+	private String password = "webcentric";
+	private int port = 3307;
+	private String ip = "127.0.0.1";
+	
+	
+	
+	
+	
+	public Object executeQuery(String query){
+		return null;
+	}
+	
+}

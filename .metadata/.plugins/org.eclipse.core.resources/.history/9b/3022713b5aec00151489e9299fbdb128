@@ -1,0 +1,36 @@
+package main;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+import com.mysql.jdbc.Driver;
+
+public class Application {
+	
+	public static void main(String[] args){
+		Driver myDriver;
+		
+		try{
+			Application.init();
+			Application.execute();
+		}catch(Exception e){
+			System.out.println("A critical error has occured. "
+					+ "Please contact a system administrator.");
+			Application.shutdown();
+		}
+	}
+
+	static void init(){
+			
+		
+	}
+	
+	static void execute(){
+		
+	}
+	
+	static void shutdown(){
+		
+	}
+}

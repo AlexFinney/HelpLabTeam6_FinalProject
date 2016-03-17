@@ -1,0 +1,19 @@
+package main;
+
+public class DatabaseConnection {
+
+	private String username = "Master";
+	private String password = "webcentric";
+	private int port = 3307;
+	
+	
+	public void DatabaseConnection(){
+		
+	}
+	
+	
+	public Object executeQuery(String query){
+		return null;
+	}
+	
+}

@@ -1,0 +1,18 @@
+package main;
+
+public class DatabaseConnection {
+
+	private String username = "Master";
+	
+	
+	
+	public void DatabaseConnection(){
+		
+	}
+	
+	
+	public Object executeQuery(String query){
+		return null;
+	}
+	
+}
