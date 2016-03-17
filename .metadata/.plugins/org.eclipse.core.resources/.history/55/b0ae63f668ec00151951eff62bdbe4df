@@ -1,0 +1,11 @@
+
+public abstract class CardType {
+
+	JPanel infoFormPanel;
+	
+	
+	public JPanel getInfoFormPanel(){
+		return infoFormPanel;
+	}
+	
+}

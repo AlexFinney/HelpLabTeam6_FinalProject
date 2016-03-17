@@ -1,0 +1,50 @@
+package Cards;
+
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class BirthdayCardType extends CardType {
+
+	private enum CardSpecialty{
+		HUMOR,
+		CARING
+	}
+	
+	public BirthdayCardType(){
+		cardTypeName = "Birthday Card";
+		setUpInfoFormPanel();
+	}
+	
+	
+	JTextField ageField;
+	JComboBox<CardSpecialty> selectionBox;
+	
+	int itemWidth = 100;
+	int itemHeight = 20;
+	int itemIndent = 30;
+	int itemVertSpacing = 5;
+	@Override
+	protected void setUpInfoFormPanel() {
+		panel = new JPanel();
+		panel.setLayout(null);
+		
+		ageField = new JTextField();
+		ageField.setBounds(itemIndent, itemHeight, 100, 20);
+		panel.add(ageField);
+		
+		selectionBox = new JComboBox<CardSpecialty>();
+		selectionBox.setBounds(10, 35, 100, 20);
+		selectionBox.addItem(CardSpecialty.HUMOR);
+		selectionBox.addItem(CardSpecialty.CARING);
+		panel.add(selectionBox);
+		
+	}
+
+	@Override
+	public void onGenerate() {
+		
+	}
+
+}

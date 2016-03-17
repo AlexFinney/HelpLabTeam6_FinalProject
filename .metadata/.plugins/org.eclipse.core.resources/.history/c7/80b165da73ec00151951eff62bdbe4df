@@ -1,0 +1,21 @@
+package Cards;
+
+import javax.swing.JPanel;
+
+public class GetWellSoon extends CardType {
+	
+	public GetWellSoon(){
+		cardTypeName = "Get Well Soon";
+	}
+	
+	@Override
+	protected void setUpInfoFormPanel() {
+			panel = new JPanel();
+	}
+
+	@Override
+	public void onGenerate() {
+		System.out.println("On gen");
+	}
+
+}

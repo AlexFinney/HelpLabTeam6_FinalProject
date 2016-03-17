@@ -1,0 +1,14 @@
+import javax.swing.JPanel;
+
+public abstract class CardType {
+
+	JPanel infoFormPanel;
+	
+	
+	public JPanel getInfoFormPanel(){
+		return infoFormPanel;
+	}
+	
+	protected abstract void setUpInfoFormPanel();
+	
+}

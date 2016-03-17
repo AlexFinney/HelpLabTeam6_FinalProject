@@ -1,0 +1,30 @@
+package Cards;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class BirthdayCardType extends CardType {
+
+	public BirthdayCardType(){
+		cardTypeName = "Birthday Card";
+		setUpInfoFormPanel();
+	}
+	
+	
+	JTextField ageField;
+	
+	@Override
+	protected void setUpInfoFormPanel() {
+		panel = new JPanel();
+		panel.setLayout(null);
+		
+		
+	}
+
+	@Override
+	public void onGenerate() {
+		
+	}
+
+}

@@ -1,0 +1,26 @@
+package gui;
+
+import java.awt.GridLayout;
+
+import javax.swing.JFrame;
+
+public class MainFrame extends JFrame {
+	
+	public MainFrame(){
+		setSize(800, 600);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("Greeting Card Generator");
+		setLayout(new GridLayout(1,2));
+		
+		
+		JPanel panel1 = new JPanel();
+		
+		
+		
+		
+		setVisible(true);
+		
+	}
+	
+	
+}

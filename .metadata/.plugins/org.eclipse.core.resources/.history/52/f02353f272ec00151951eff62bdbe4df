@@ -1,0 +1,19 @@
+package Cards;
+
+public class GetWellSoon extends CardType {
+	
+	public GetWellSoon(){
+		
+	}
+	
+	@Override
+	protected void setUpInfoFormPanel() {
+
+	}
+
+	@Override
+	public void onGenerate() {
+
+	}
+
+}

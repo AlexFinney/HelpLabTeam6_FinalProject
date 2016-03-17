@@ -1,18 +1,11 @@
 package main;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import com.mysql.jdbc.Driver;
-
-import database.MySQLAccess;
+import javax.swing.UIManager;
+import gui.MainFrame;
 
 public class Application {
 	
 	public static void main(String[] args){
-		Driver myDriver;
 		
 		try{
 			Application.init();
@@ -23,29 +16,21 @@ public class Application {
 			Application.shutdown();
 		}
 	}
-
-	static void init(){
-		Connection conn = MySQLAccess.getConnection();
-		
-		String name = null;
-		
-		try {
-			ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM temp WHERE id<100");
-			while(rs.next()){
-				name = rs.getString("name");
-				System.out.println(name);
-			}
-			
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
+	
+	private static void init() {
+		 try {
+	        UIManager.setLookAndFeel(
+	            UIManager.getSystemLookAndFeelClassName());
+	    } 
+	  catch(Exception e){
+		  e.printStackTrace();
+	  }
 		
 	}
-	
+
 	static void execute(){
-		
+		//create GUI
+		new MainFrame();		
 	}
 	
 	static void shutdown(){

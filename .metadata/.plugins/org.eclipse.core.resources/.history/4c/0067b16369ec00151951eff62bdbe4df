@@ -1,0 +1,17 @@
+package Cards;
+
+import javax.swing.JPanel;
+
+public class BirthdayCardType extends CardType {
+
+	@Override
+	protected void setUpInfoFormPanel() {
+		panel = new JPanel();
+	}
+
+	@Override
+	public void onGenerate() {
+		
+	}
+
+}

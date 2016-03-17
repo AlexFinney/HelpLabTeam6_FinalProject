@@ -1,0 +1,24 @@
+package Cards;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class BirthdayCardType extends CardType {
+
+	public BirthdayCardType(){
+		
+	}
+	
+	@Override
+	protected void setUpInfoFormPanel() {
+		panel = new JPanel();
+		
+		panel.add(new JLabel("I am a Birthday Card Form! :D"));
+	}
+
+	@Override
+	public void onGenerate() {
+		
+	}
+
+}
