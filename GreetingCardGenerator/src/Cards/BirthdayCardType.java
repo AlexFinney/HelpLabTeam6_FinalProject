@@ -2,10 +2,13 @@ package Cards;
 
 import java.awt.Font;
 
+import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.EtchedBorder;
 
 public class BirthdayCardType extends CardType {
 
@@ -28,7 +31,7 @@ public class BirthdayCardType extends CardType {
 	JTextField ageField;
 	JComboBox<CardSpecialty> cardSpecSelectionBox;
 	JComboBox<Gender> genderSelectionBox;
-	JTextField customMessage;
+	JTextArea customMessage;
 	
 	
 	int itemWidth = 200;
@@ -80,6 +83,17 @@ public class BirthdayCardType extends CardType {
 		genderSelectionBox.addItem(Gender.M);
 		genderSelectionBox.addItem(Gender.F);
 		panel.add(genderSelectionBox);
+		
+		JLabel messageLabel = new JLabel("Message:");
+		messageLabel.setBounds(labelX, itemVertIndent + itemHeight * 5 + itemVertSpacing * 2, itemWidth, itemHeight);
+		messageLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+		panel.add(messageLabel);
+		
+		customMessage = new JTextArea();
+		customMessage.setBounds(itemIndent, itemVertIndent + itemHeight * 5 + itemVertSpacing * 2, itemWidth, itemHeight * 6);
+		customMessage.setLineWrap(true);
+		customMessage.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
+		panel.add(customMessage);
 		
 	}
 
