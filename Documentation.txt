@@ -1,0 +1,34 @@
+Just some random documentation on the project and what we have so far:
+
+
+On Database Connection Stuff:
+  - right now, the ip, database name, port number, username and password are all hard coded into the MySQLAccess class,
+    but I eventually want to either make a config file, or have an options window in the program where you can manually enter the 
+    relevant database info, and it'll save the last settings that you used.
+    
+    - the database isn't set up yet, but when it is, all the query's can be run on the Connection object received from the static 
+    MySQLAccess.getConnection() function.
+    
+    - I think the most appropriate place to run all of our queries will be in the onGenerate() method that is declared in the abstract CardType
+      card.  Whenever the "Generate" button in pushed in the Main (Left) panel, the currently selected card type's onGenerate() method is called,
+      so each card type can run it's own query based on whatever parameters are defined in its own panel.
+  
+On the GUI:
+
+    the GUI consists of a JFrame (the MainFrame class, which extends JFrame), which contains two panels that are placed next to each other.
+    The Left Panel (the Main panel) is static, (in the sense that it never chages), while the right panel is dynamic, and 
+    assigned from the currently selected CardType.  Each right panel is defined in the individual CardType classes, and is displayed
+    in the MainFrame by calling the method CardType.getInfoFormPanel()
+    
+On the CardType OO design:
+    Each type of greeting card derives from the abstract class, CardType, which has a few defined methods, and a couple abstract methods
+    as well. The defined methods are just basic getters. The methods you have to implement whenever you create a new CardType are the 
+    setUpInfoFormPanel() and the onGenerate() method. These are the steps for creating a new CardType:
+      - create you new CardType class, and make sure it extends CardType
+      - make a constructor, and define the CardType's name (with the variable cardTypeName, this is what is displayed in the Main left 
+          panel's JComboBox
+      - Also in the constructor, make sure to call setUpInfoFormPanel()
+      -That's it! The MainFrame class uses Reflection to load all the classes in the Cards package, so as soon as you've done those steps,
+          you'll have a working entry in the JComboBox in the main panel.
+    
+    
