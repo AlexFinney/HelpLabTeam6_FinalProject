@@ -131,7 +131,7 @@ public class MainFrame extends JFrame {
    				 this.getWidth() / 2, this.getHeight() - this.getHeight() / 8);
 	        
 	        //g2.draw(lin);
-	        g2.setStroke(new BasicStroke(2));
+	        g2.setStroke(new BasicStroke(5));
 	        g2.draw(lin2);
 	    }
 	  

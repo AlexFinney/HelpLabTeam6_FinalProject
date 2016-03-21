@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -45,7 +44,6 @@ public class MainFrame extends JFrame {
 		setupLeftPanel();
 		
 		panel2 = ((CardType)cardTypeComboBox.getSelectedItem()).getInfoFormPanel();
-		panel2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		
 		container.add(panel1);	
 		
@@ -60,7 +58,6 @@ public class MainFrame extends JFrame {
 	static JComboBox<CardType> cardTypeComboBox;
 	 private void setupLeftPanel() {
 			panel1 = new JPanel();
-			panel1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 			panel1.setLayout(null);
 			
 			cardTypeComboBox = new JComboBox<CardType>();
@@ -119,20 +116,17 @@ public class MainFrame extends JFrame {
 		 return cardTypeComboBox;
 	 }
 	
-	 
+
 	public void paint(Graphics g) {
 	        super.paint(g);  // fixes the immediate problem.
 	        Graphics2D g2 = (Graphics2D) g;
-	        /*
 	        Line2D lin = new Line2D.Float(panel1.getWidth(), 0, 
 	        				 panel1.getWidth(), this.getHeight() - this.getHeight() / 8);
-	       */
+	       
 	        Line2D lin2 = new Line2D.Float(0,  this.getHeight() - this.getHeight() / 8, 
-   				 this.getWidth() / 2, this.getHeight() - this.getHeight() / 8);
+   				 this.getWidth(), this.getHeight() - this.getHeight() / 8);
 	        
-	        //g2.draw(lin);
-	        g2.setStroke(new BasicStroke(2));
+	        g2.draw(lin);
 	        g2.draw(lin2);
 	    }
-	  
 }
