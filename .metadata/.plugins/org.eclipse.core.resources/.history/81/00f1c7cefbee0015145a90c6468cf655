@@ -1,0 +1,46 @@
+package main;
+
+import java.io.FileInputStream;
+
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
+import database.MySQLAccess;
+import gui.DatabaseParametersFrame;
+import gui.MainFrame;
+
+public class Application {
+	
+	public static void main(String[] args){
+		
+		try{
+			Application.init();
+			Application.execute();
+		}catch(Exception e){
+			System.out.println("A critical error has occured. "
+					+ "Please contact a system administrator.");
+			Application.shutdown();
+		}
+	}
+	
+	String fileName = "DatabaseParameters.txt";
+	private static void init() throws Exception {
+	        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+	        
+	        try{
+	        	MySQLAccess.getConnection();
+	        }catch (Exception e){
+	        	DatabaseParametersFrame dpf = new DatabaseParametersFrame();
+	        	FileInputStream fis = new FileInputStream(new File());
+	        }
+	}
+
+	static void execute(){
+		//create GUI
+		new MainFrame();		
+	}
+	
+	static void shutdown(){
+		
+	}
+}

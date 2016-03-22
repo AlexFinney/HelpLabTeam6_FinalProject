@@ -1,15 +1,24 @@
 package main;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
 import javax.swing.UIManager;
+
+import database.MySQLAccess;
+import gui.DatabaseParametersFrame;
 import gui.MainFrame;
 
 public class Application {
 	
-	public static void main(String[] args){
+	public static void main(String[] args) throws IOException{
 		
 		try{
 			Application.init();
 			Application.execute();
+			
 		}catch(Exception e){
 			System.out.println("A critical error has occured. "
 					+ "Please contact a system administrator.");
@@ -17,23 +26,20 @@ public class Application {
 		}
 	}
 	
-	private static void init() {
-		 try {
-	        UIManager.setLookAndFeel(
-	            UIManager.getSystemLookAndFeelClassName());
-	    } 
-	  catch(Exception e){
-		  e.printStackTrace();
-	  }
-		
+
+	private static void init() throws Exception {
+	        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 	}
 
 	static void execute(){
 		//create GUI
-		new MainFrame();		
+		new MainFrame();	
+		MySQLAccess.init();
 	}
 	
-	static void shutdown(){
-		
+	public static void shutdown() throws IOException{
+		MySQLAccess.shutdown();
 	}
+	
+	
 }

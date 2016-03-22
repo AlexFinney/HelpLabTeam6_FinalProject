@@ -1,0 +1,84 @@
+package main;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+
+import javax.swing.UIManager;
+
+import database.MySQLAccess;
+import gui.DatabaseParametersFrame;
+import gui.MainFrame;
+
+public class Application {
+	
+	public static void main(String[] args){
+		
+		try{
+			Application.init();
+			Application.execute();
+		}catch(Exception e){
+			System.out.println("A critical error has occured. "
+					+ "Please contact a system administrator.");
+			Application.shutdown();
+		}
+	}
+	
+	static final String fileName = "DatabaseParameters.txt";
+	private static void init() throws Exception {
+	        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+	        
+	        try{
+	        	File file = new File(fileName);
+	        	if(!file.exists())
+	        		file.createNewFile();
+	        	
+	        	BufferedReader br = new BufferedReader(new FileReader(new File(fileName)));
+
+	        	String input = "";
+	        	String pwd = "";
+	        	String dbname = "";
+	        	String ip = "";
+	        	String port = "";
+	        	String username = "";
+	        	
+	        	while((input = br.readLine()) != null){
+	        		switch(input.split(":")[0]){
+	        		case "password":
+	        			pwd =input.split(":")[1]; 
+	        			break;
+	        		case "dbname":
+	        			dbname =input.split(":")[1];
+	        			break;
+	        		case "username":
+	        			username =input.split(":")[1];
+	        			break;
+	        		case "ip":
+	        			ip =input.split(":")[1];
+	        			break;
+	        		case "port":
+	        			port =input.split(":")[1];
+	        			break;
+	        		}
+	        	}
+	        	if(!ip.equals("") && !dbname.equals("") && !username.equals("") && !port.equals("") && !pwd.equals(""))
+	        		MySQLAccess.setParameters(ip, port, dbname, username, pwd);
+	        	
+	        	MySQLAccess.getConnection();
+	        }catch (Exception e){
+	       
+	        	
+	        	
+	        	
+	        }
+	}
+
+	static void execute(){
+		//create GUI
+		new MainFrame();		
+	}
+	
+	static void shutdown(){
+		
+	}
+}
