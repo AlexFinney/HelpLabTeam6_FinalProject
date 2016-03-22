@@ -1,10 +1,14 @@
-Just some random documentation on the project and what we have so far:
+To set up project on new computer:
+
+  -clone repository in new folder
+  - open Eclipse, right click in Project Explorer window -> import -> General -> Existing Projects Into Workspace -> Next
+  - Make sure the Select Root Directory is checked, and hit Browse, then navigate to the place where your project was cloned
+  - Hit Finish, and you're done! Open the Main package, then the Application class, and then run that bad boy!
+  
+
 
 
 On Database Connection Stuff:
-  - right now, the ip, database name, port number, username and password are all hard coded into the MySQLAccess class,
-    but I eventually want to either make a config file, or have an options window in the program where you can manually enter the 
-    relevant database info, and it'll save the last settings that you used.
     
     - the database isn't set up yet, but when it is, all the query's can be run on the Connection object received from the static 
     MySQLAccess.getConnection() function.
