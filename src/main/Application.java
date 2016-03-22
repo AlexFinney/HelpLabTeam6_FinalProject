@@ -1,14 +1,10 @@
 package main;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 
 import javax.swing.UIManager;
 
 import database.MySQLAccess;
-import gui.DatabaseParametersFrame;
 import gui.MainFrame;
 
 public class Application {
