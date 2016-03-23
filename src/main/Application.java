@@ -4,7 +4,9 @@ import java.io.IOException;
 
 import javax.swing.UIManager;
 
+import database.DatabasePopulator;
 import database.MySQLAccess;
+import gui.CardViewer;
 import gui.MainFrame;
 
 public class Application {
@@ -18,6 +20,7 @@ public class Application {
 		}catch(Exception e){
 			System.out.println("A critical error has occured. "
 					+ "Please contact a system administrator.");
+			e.printStackTrace();
 			Application.shutdown();
 		}
 	}
@@ -29,6 +32,7 @@ public class Application {
 
 	static void execute(){
 		//create GUI
+		DatabasePopulator.retrieve();
 		new MainFrame();	
 		MySQLAccess.init();
 	}
