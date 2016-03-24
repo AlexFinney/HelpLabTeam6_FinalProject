@@ -94,12 +94,10 @@ public class BirthdayCardType extends CardType {
 		customMessage.setLineWrap(true);
 		customMessage.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
 		panel.add(customMessage);
-		
 	}
 
 	@Override
 	public void onGenerate() {
 		System.out.println("Genreate meee");
 	}
-
 }

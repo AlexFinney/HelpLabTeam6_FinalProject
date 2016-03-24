@@ -1,7 +1,6 @@
 package database;
 
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -20,21 +19,22 @@ public class DatabasePopulator {
 
 	public static void populate(){
 		try {
-			BufferedImage image = ImageIO.read(new File("img_testing/cake.png"));
+			BufferedImage image = ImageIO.read(new File("img_testing/sunrise.png"));
 			
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			ImageIO.write(image, "png", baos);
 			
 			byte[] bytes = baos.toByteArray();
+			System.out.println(bytes.length);
 			
 			String stmt = "INSERT INTO test VALUES(?, ?)";
 			Connection c =  MySQLAccess.getConnection();
 			PreparedStatement pstmt = c.prepareStatement(stmt);
 			
 			pstmt.setBytes(1, bytes);
-			pstmt.setInt(2, 1);
+			pstmt.setInt(2, 2);
 			
-			//pstmt.execute();
+			pstmt.execute();
 			
 			c.close();
 			
@@ -60,12 +60,15 @@ public class DatabasePopulator {
 			
 			rs.next();
 			Blob blob = rs.getBlob("pic");
+			System.out.println(blob.length());
 			
 			BufferedImage image = ImageIO.read(blob.getBinaryStream());
 			
 			
 			c.close();
 			new CardViewer(image);
+			
+			
 		} catch (SQLException | IOException e) {
 			e.printStackTrace();
 		}

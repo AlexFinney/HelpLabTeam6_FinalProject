@@ -5,27 +5,16 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.sql.Blob;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
-import database.MySQLAccess;
 
 public class CardViewer extends JFrame{
 	BufferedImage image = null;
 	
 	public CardViewer(BufferedImage image){
-		
-		
-		
-		this.image = (BufferedImage) resizeToBig(image, 500, 500);
+		this.image = (BufferedImage) resizeToBig(image, 768, 1024 );
 		setImage();
 		
 		setSize(this.image.getWidth(), this.image.getHeight());

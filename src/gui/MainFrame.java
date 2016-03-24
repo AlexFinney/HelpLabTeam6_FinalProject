@@ -14,8 +14,6 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.geom.Line2D;
 import java.io.IOException;
-import java.net.URL;
-import java.util.Enumeration;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -24,7 +22,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import Cards.BirthdayCardType;
 import Cards.CardType;
 import main.Application;
 import util.ClassUtils;
