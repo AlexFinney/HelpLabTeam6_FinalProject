@@ -2,10 +2,12 @@ package gui;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -14,8 +16,6 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.geom.Line2D;
 import java.io.IOException;
-import java.net.URL;
-import java.util.Enumeration;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -24,7 +24,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import Cards.BirthdayCardType;
 import Cards.CardType;
 import main.Application;
 import util.ClassUtils;
@@ -34,16 +33,15 @@ public class MainFrame extends JFrame {
 	JPanel panel1;
 	JPanel panel2;
 	JPanel container;
+	
 	public MainFrame(){
 		setSize(800, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Greeting Card Generator");
 		setResizable(false);
 		
-		
 		container = new JPanel();
 		container.setLayout(new GridLayout(1,2));
-		
 		
 		setupLeftPanel();
 		
@@ -51,53 +49,29 @@ public class MainFrame extends JFrame {
 		panel2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		
 		container.add(panel1);	
-		
-		
 		container.add(panel2);
+
 		getContentPane().add(container);
 		
 		setVisible(true);
-		this.addWindowListener(new WindowListener() {
-			
-			@Override
-			public void windowOpened(WindowEvent e) {
-			}
-			
-			@Override
-			public void windowIconified(WindowEvent e) {
-			}
-			
-			@Override
-			public void windowDeiconified(WindowEvent e) {
-			}
-			
-			@Override
-			public void windowDeactivated(WindowEvent e) {
-			}
-			
-			@Override
+		addWindowListener(new WindowListener() {
 			public void windowClosing(WindowEvent e) {
 				try {
 					Application.shutdown();
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 			
-			@Override
-			public void windowClosed(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void windowActivated(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void windowDeiconified(WindowEvent e) {}
+			public void windowDeactivated(WindowEvent e) {}
+			public void windowClosed(WindowEvent e) {}
+			public void windowActivated(WindowEvent e) {}
+			public void windowIconified(WindowEvent arg0) {}
+			public void windowOpened(WindowEvent arg0) {}
 		});
-		
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 	}
 	
 	static JComboBox<CardType> cardTypeComboBox;

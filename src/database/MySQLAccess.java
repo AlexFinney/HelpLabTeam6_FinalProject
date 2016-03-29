@@ -82,12 +82,13 @@ public class MySQLAccess {
         	if(!_port.equals(""))
     			port = _port;
         	
-        	
-        	if(getConnection() == null){
+        	Connection c = getConnection();
+        	if(c == null){
         		DatabaseParametersFrame dpf = new DatabaseParametersFrame(ip, port, username, password, dbname);
         		JOptionPane.showMessageDialog(dpf, "Unable to connect to the database with loaded parameters. "
         				+ "\nPlease contact a system administrator or adjust parameters.");
-        	}
+        	}else
+        		c.close();
         	
         	System.out.println("Loaded params from config file. Connectvity == " + (getConnection() != null));
         	
