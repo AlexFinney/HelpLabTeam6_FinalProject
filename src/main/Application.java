@@ -16,9 +16,6 @@ public class Application {
 		
 		
 		try{
-			//MailUtils.sendEmail("alexander.n.finney@gmail.com", "Welcome to Greeting Cards R Us", "Here is your validation code: HQRZ12R\n\nPlease enter this code within the next 30 minutes to validate your account!\n\n\nThanks again for using Greeting Cards 'R Us,\n\n\tThe Greeting Cards Team");
-			
-			
 			Application.init();
 			Application.execute();
 			
