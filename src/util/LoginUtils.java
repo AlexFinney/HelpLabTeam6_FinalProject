@@ -54,14 +54,12 @@ class LoginThread implements Runnable{
 	@Override
 	public void run() {
 		try {
-			String query = "SELECT * FROM users where username='" + username + "' AND password='" + password + "'";
+			String query = "SELECT * FROM users where username=? AND password=?";
 			Connection c = MySQLAccess.getConnection();
 			
 			PreparedStatement stmt = c.prepareStatement(query);
-			//stmt.setString(1, username);
-			//stmt.setString(2, password);
-			
-			System.out.println(stmt.toString());
+			stmt.setString(1, username);
+			stmt.setString(2, password);
 			
 			ResultSet rs = stmt.executeQuery();
 			

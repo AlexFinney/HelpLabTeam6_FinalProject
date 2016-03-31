@@ -9,6 +9,4 @@ public class VerificationCodeUtils {
 	public static boolean verifyCode(String code){
 		return code.equals("DFGCG-DGJTH-KSJDN-DISKJ-POIMN");
 	}
-	
-
 }

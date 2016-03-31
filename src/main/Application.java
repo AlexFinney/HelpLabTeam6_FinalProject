@@ -32,11 +32,15 @@ public class Application {
 	        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 	}
 
+	static boolean shouldLogin = true;
 	static void execute(){
 		//create GUI
 		//DatabasePopulator.populate();
 		//DatabasePopulator.retrieve();
-		new LoginFrame();	
+		if(shouldLogin)
+			new LoginFrame();
+		else
+			new MainFrame();
 		MySQLAccess.init();
 	}
 	
