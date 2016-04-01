@@ -1,31 +1,39 @@
 package gui;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
-import java.awt.Color;
-import javax.swing.UIManager;
+import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import database.MySQLAccess;
 import util.MailUtils;
 import util.VerificationCodeUtils;
-
-import java.awt.Font;
-import javax.swing.JTextField;
-import javax.mail.MessagingException;
-import javax.mail.internet.AddressException;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class VerifyAccountFrame extends JFrame{
 
 	private static final long serialVersionUID = -4877196862408419354L;
 	private JTextField textField;
-
+	
+	String username;
+	String password;
+	String email;
 	public VerifyAccountFrame(String fullName, String username, String password, String email ){
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		
 		setTitle("Verify Account");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(400, 400);
@@ -34,6 +42,7 @@ public class VerifyAccountFrame extends JFrame{
 
 		createComponents();
 		setVisible(true);
+		
 		
 		String message = "Hello, " + fullName + "!\n" +
 						 "Thank you for registering with Greeting Cards 'R Us!\n\n"
@@ -76,6 +85,21 @@ public class VerifyAccountFrame extends JFrame{
 				if(VerificationCodeUtils.verifyCode(textField.getText())){
 					JOptionPane.showMessageDialog(null, "Your account has successfully been activated! "
 							+ "\nPlease proceed to login.");
+					
+					Connection c  = MySQLAccess.getConnection();
+					
+					try {
+						String query = "INSERT INTO users VALUES(?, ?, ?)" ;
+						PreparedStatement stmt = c.prepareStatement(query);
+						stmt.setString(1, username);
+						stmt.setString(2, password);
+						stmt.setString(3, email);
+						
+						stmt.execute();
+						c.close();
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
 					new LoginFrame();
 					setVisible(false);
 					dispose();

@@ -9,16 +9,14 @@ import database.MySQLAccess;
 import gui.LoginFrame;
 import gui.MainFrame;
 import util.MailUtils;
+import util.VerificationCodeUtils;
 
 public class Application {
 	
 	public static void main(String[] args) throws IOException{
-		
-		
 		try{
 			Application.init();
 			Application.execute();
-			
 		}catch(Exception e){
 			System.out.println("A critical error has occured. "
 					+ "Please contact a system administrator.");
