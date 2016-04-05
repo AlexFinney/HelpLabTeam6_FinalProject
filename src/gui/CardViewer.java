@@ -1,9 +1,11 @@
 package gui;
 
 import java.awt.AlphaComposite;
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
@@ -20,6 +22,9 @@ public class CardViewer extends JFrame{
 		setSize(this.image.getWidth(), this.image.getHeight());
 		setResizable(false);
 		
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width / 2 - this.getSize().width / 2,
+				(int) (dim.height / 2 - this.getSize().height / 2 - dim.getHeight() / 8));
 		setVisible(true);
 	}
 

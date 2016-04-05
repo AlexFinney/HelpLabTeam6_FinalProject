@@ -16,8 +16,8 @@ import gui.DatabaseParametersFrame;
 
 public class MySQLAccess {
 	
-	static String ip = "1192.168.0.11";
-	static String port = "3307";
+	static String ip = "10.173.1.6";
+	static String port = "3306";
 	static String dbname = "WebCentricDB";
 	static String username = "Master";
 	static String password = "webcentric";

@@ -27,7 +27,6 @@ public class BirthdayCardType extends CardType {
 		setUpInfoFormPanel();
 	}
 	
-	
 	JTextField ageField;
 	JComboBox<CardSpecialty> cardSpecSelectionBox;
 	JComboBox<Gender> genderSelectionBox;

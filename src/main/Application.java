@@ -1,20 +1,21 @@
 package main;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 import javax.swing.UIManager;
 
-import database.DatabasePopulator;
 import database.MySQLAccess;
 import gui.LoginFrame;
 import gui.MainFrame;
-import util.MailUtils;
-import util.VerificationCodeUtils;
 
 public class Application {
 	
 	public static void main(String[] args) throws IOException{
 		try{
+			
 			Application.init();
 			Application.execute();
 		}catch(Exception e){
@@ -32,14 +33,12 @@ public class Application {
 
 	static boolean shouldLogin = true;
 	static void execute(){
-		//create GUI
-		//DatabasePopulator.populate();
-		//DatabasePopulator.retrieve();
+		
 		if(shouldLogin)
 			new LoginFrame();
 		else
 			new MainFrame();
-		MySQLAccess.init();
+		MySQLAccess.init();		
 	}
 	
 	public static void shutdown() throws IOException{

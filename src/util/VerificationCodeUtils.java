@@ -26,7 +26,6 @@ public class VerificationCodeUtils {
 		Connection c = MySQLAccess.getConnection();
 		
 		try {
-			System.out.println("Code is: " + code);
 			String query = "INSERT INTO codes VALUES(\'" + code + "\')";
 			PreparedStatement stmt = c.prepareStatement(query);
 			stmt.execute();
@@ -52,7 +51,15 @@ public class VerificationCodeUtils {
 			ResultSet rs = stmt.getResultSet();
 			
 			boolean ret = rs.next();
-
+			
+			if(ret){
+				query = "DELETE FROM codes WHERE code=?";
+				stmt = c.prepareStatement(query);
+				stmt.setString(1, code);
+				stmt.execute();
+			}
+				
+			
 			c.close();
 			
 			return ret;
