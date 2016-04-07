@@ -66,7 +66,7 @@ public class DatabasePopulator {
 			
 			
 			c.close();
-			new CardViewer(image);
+			//new CardViewer(image);
 			
 			
 		} catch (SQLException | IOException e) {

@@ -1,12 +1,14 @@
 package Cards;
 import javax.swing.JPanel;
 
+import gui.CardViewer;
+
 public abstract class CardType {
 
 	JPanel panel;
 	String cardTypeName;
 	String equivTableName = "BirthdayCard";
-	
+	CardViewer cardViewer;
 	
 	public JPanel getInfoFormPanel(){
 		return panel;
@@ -22,5 +24,9 @@ public abstract class CardType {
 	
 	public String toString(){
 		return cardTypeName;
+	}
+	
+	public CardViewer getCardViewer(){
+		return cardViewer;
 	}
 }

@@ -1,13 +1,14 @@
 package main;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
+import javax.imageio.ImageIO;
 import javax.swing.UIManager;
 
 import database.MySQLAccess;
+import gui.CardViewer;
 import gui.LoginFrame;
 import gui.MainFrame;
 
@@ -16,8 +17,13 @@ public class Application {
 	public static void main(String[] args) throws IOException{
 		try{
 			
-			Application.init();
-			Application.execute();
+		
+			//BufferedImage image = ImageIO.read(new File("img_testing/sunrise.png"));
+			
+			//CardViewer cv = new CardViewer(image, "'ello there, 'ol chap! Seems like a perfectly fine day for nice, cuppa' tea!\n\nOh, and happy birthday!");
+			
+			//Application.init();
+			//Application.execute();
 		}catch(Exception e){
 			System.out.println("A critical error has occured. "
 					+ "Please contact a system administrator.");

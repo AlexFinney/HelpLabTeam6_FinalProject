@@ -1,6 +1,7 @@
 package Cards;
 
 import java.awt.Font;
+import java.awt.image.BufferedImage;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
@@ -9,6 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
+
+import gui.CardViewer;
 
 public class BirthdayCardType extends CardType {
 
@@ -99,4 +102,5 @@ public class BirthdayCardType extends CardType {
 	public void onGenerate() {
 		System.out.println("Genreate meee");
 	}
+	
 }
