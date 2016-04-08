@@ -19,6 +19,7 @@ import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -27,6 +28,8 @@ import javax.swing.JPanel;
 import Cards.CardType;
 import main.Application;
 import util.ClassUtils;
+import javax.swing.JRadioButton;
+import javax.swing.colorchooser.AbstractColorChooserPanel;
 
 public class MainFrame extends JFrame {
 	
@@ -48,9 +51,35 @@ public class MainFrame extends JFrame {
 		panel2 = ((CardType)cardTypeComboBox.getSelectedItem()).getInfoFormPanel();
 		panel2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		
-		container.add(panel1);	
+		JPanel colorSelector = new SimpleColorSelector();
+		colorSelector.setBounds(20,150,346,75);
+		panel1.add(colorSelector);
+		
+		JRadioButton setOwnColor = new JRadioButton("");
+		setOwnColor.setBounds(203, 118, 21, 31);
+		setOwnColor.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.DESELECTED) {
+					colorSelector.setVisible(true);
+				} else {
+					colorSelector.setVisible(false);
+				}
+			}
+		});
+		panel1.add(setOwnColor);
+		
+		
+		
+		JLabel lblDefaultColoring = new JLabel("Use Default Text Color:");
+		lblDefaultColoring.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+		lblDefaultColoring.setBounds(10, 118, 187, 31);
+		panel1.add(lblDefaultColoring);
+		
+		container.add(panel1);
 		container.add(panel2);
-
+		
+		
 		getContentPane().add(container);
 		
 		setVisible(true);
@@ -123,7 +152,7 @@ public class MainFrame extends JFrame {
 			
 			
 			JButton btnGenerate = new JButton("Generate Card!");
-			btnGenerate.setBounds(10, 400, 356, 90);
+			btnGenerate.setBounds(10, 470, 356, 90);
 			btnGenerate.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -144,13 +173,12 @@ public class MainFrame extends JFrame {
 	        /*
 	        Line2D lin = new Line2D.Float(panel1.getWidth(), 0, 
 	        				 panel1.getWidth(), this.getHeight() - this.getHeight() / 8);
-	       */
+	       
 	        Line2D lin2 = new Line2D.Float(0,  this.getHeight() - this.getHeight() / 8, 
    				 this.getWidth() / 2, this.getHeight() - this.getHeight() / 8);
-	        
+	       */ 
 	        //g2.draw(lin);
 	        g2.setStroke(new BasicStroke(2));
-	        g2.draw(lin2);
+	        //g2.draw(lin2);
 	    }
-	  
 }
