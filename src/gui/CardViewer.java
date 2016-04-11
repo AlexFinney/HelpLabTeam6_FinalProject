@@ -9,7 +9,10 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
-import java.awt.image.ColorModel;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -60,7 +63,7 @@ public class CardViewer extends JFrame{
 		backroundLabel.add(area);
 
 		
-		Color c = getAverageColor();
+		Color c = getMostCommonColor();
 		Style style = area.addStyle("ColorStyle", null);
 		StyleConstants.setForeground(style, c);
 		try {
@@ -77,6 +80,100 @@ public class CardViewer extends JFrame{
 		setSize(this.getWidth() - 1,this.getHeight() - 1);
 		setSize(this.getWidth() + 1,this.getHeight() + 1);
 	}
+	
+	
+	
+	private Color getMostCommonColor(){
+		
+		HashMap<Color, Integer> occurances = new HashMap<Color, Integer>();
+		
+		for(int y = 0; y < image.getHeight(); y++){
+			for(int x = 0; x < image.getWidth(); x++){
+				int data = image.getRGB(x, y);
+
+				int r =  ((data  & 0xFF0000) >> 16);
+				int g =  ((data  & 0xFF00) >>  8);
+				int b =  (data & 0xFF);
+				
+				r /= 32;
+				g /= 32;
+				b /= 32;
+				
+				Color col = new Color(r,g,b);
+				if(occurances.get(col) == null){
+					occurances.put(col, 1);
+				}else{
+					occurances.put(col, occurances.get(col) + 1);
+				}
+			}
+		}
+		
+		Integer[] vals = (Integer[])occurances.values().toArray(new Integer[occurances.keySet().size()]);
+		Arrays.sort(vals);
+		Color firstPlace = null;
+		Color secondPlace = null;
+		Color thirdPlace = null;
+		for(Map.Entry<Color, Integer> entry : occurances.entrySet()){
+			
+			if(entry.getValue() == vals[vals.length - 1]){
+				firstPlace = entry.getKey();
+			}
+			if(entry.getValue() == vals[vals.length - 2]){
+				secondPlace = entry.getKey();
+			}
+			if(entry.getValue() == vals[vals.length - 3]){
+				thirdPlace = entry.getKey();
+			}
+		}
+		
+		JFrame frame = new JFrame();
+		frame.setLayout(null);
+		frame.setSize(300,300);
+		frame.setResizable(false);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setVisible(true);
+		
+		
+	
+		
+		
+		
+		Color finalColor = new Color(255 - firstPlace.getRed() * 32,
+									 255 - firstPlace.getGreen() * 32,
+									 255 - firstPlace.getBlue() * 32);
+		
+		JLabel first = new JLabel("First Place");
+		first.setOpaque(true);
+		first.setBounds(0,0, 300,100);
+		first.setBackground( new Color( firstPlace.getRed() * 32,
+				  firstPlace.getGreen() * 32,
+				  firstPlace.getBlue() * 32));
+		frame.add(first);
+		
+		
+		
+		JLabel second = new JLabel("Second Place");
+		second.setOpaque(true);
+		second.setBounds(0,100, 300,100);
+		second.setBackground( new Color( secondPlace.getRed() * 32,
+				 secondPlace.getGreen() * 32,
+				  secondPlace.getBlue() * 32));
+		frame.add(second);
+		
+		JLabel third = new JLabel("Third Place");
+		third.setOpaque(true);
+		third.setBounds(0,200, 300,100);
+		third.setBackground( new Color( thirdPlace.getRed() * 32,
+				  thirdPlace.getGreen() * 32,
+				  thirdPlace.getBlue() * 32));
+		frame.add(third);
+		
+		
+		return finalColor;
+	}
+	
+	
+	
 	
 	private Color getAverageColor(){
 		
