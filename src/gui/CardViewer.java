@@ -12,7 +12,6 @@ import java.awt.image.BufferedImage;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -26,18 +25,22 @@ import javax.swing.text.StyleConstants;
 public class CardViewer extends JFrame{
 	BufferedImage image = null;
 	String cardText;
-	
-	public CardViewer(BufferedImage image, String text){
+	Color textColor;
+	public CardViewer(BufferedImage image, String text, Color color){
+		
+		if(color != null)
+			this.textColor = color;
+		
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.cardText = text;
 		this.setLayout(new OverlayLayout(this));
-		this.image = (BufferedImage) resizeToBig(image, 768, 1024 );
+		this.image = (BufferedImage) resizeToBig(image, 500, 500 );
 		setImage();
 		setSize(this.image.getWidth(), this.image.getHeight());
 		setResizable(false);
 		
 		createTextPane();
 		
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width / 2 - this.getSize().width / 2,(int) (dim.height / 2 - this.getSize().height / 2 - dim.getHeight() / 8));
@@ -63,7 +66,11 @@ public class CardViewer extends JFrame{
 		backroundLabel.add(area);
 
 		
-		Color c = getMostCommonColor();
+		Color c = null;
+		if(textColor == null)
+			c = getMostCommonColor();
+		else
+			c = textColor;
 		Style style = area.addStyle("ColorStyle", null);
 		StyleConstants.setForeground(style, c);
 		try {
@@ -126,7 +133,7 @@ public class CardViewer extends JFrame{
 			}
 		}
 		
-		JFrame frame = new JFrame();
+		/*JFrame frame = new JFrame();
 		frame.setLayout(null);
 		frame.setSize(300,300);
 		frame.setResizable(false);
@@ -135,14 +142,14 @@ public class CardViewer extends JFrame{
 		
 		
 	
-		
+		*/
 		
 		
 		Color finalColor = new Color(255 - firstPlace.getRed() * 32,
 									 255 - firstPlace.getGreen() * 32,
 									 255 - firstPlace.getBlue() * 32);
 		
-		JLabel first = new JLabel("First Place");
+		/*JLabel first = new JLabel("First Place");
 		first.setOpaque(true);
 		first.setBounds(0,0, 300,100);
 		first.setBackground( new Color( firstPlace.getRed() * 32,
@@ -168,7 +175,7 @@ public class CardViewer extends JFrame{
 				  thirdPlace.getBlue() * 32));
 		frame.add(third);
 		
-		
+		*/
 		return finalColor;
 	}
 	

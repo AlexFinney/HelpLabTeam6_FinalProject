@@ -14,16 +14,14 @@ import gui.MainFrame;
 
 public class Application {
 	
+	
 	public static void main(String[] args) throws IOException{
 		try{
 			
-		
-			BufferedImage image = ImageIO.read(new File("img_testing/download.png"));
 			
-			CardViewer cv = new CardViewer(image, "'ello there, 'ol chap! Seems like a perfectly fine day for nice, cuppa' tea!\n\nOh, and happy birthday!");
 			
-			//Application.init();
-			//Application.execute();
+			Application.init();
+			Application.execute();
 		}catch(Exception e){
 			System.out.println("A critical error has occured. "
 					+ "Please contact a system administrator.");
@@ -37,7 +35,7 @@ public class Application {
 	        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 	}
 
-	static boolean shouldLogin = false;
+	static boolean shouldLogin = true;
 	static void execute(){
 		
 		if(shouldLogin)

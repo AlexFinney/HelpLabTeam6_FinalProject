@@ -1,5 +1,6 @@
 package Cards;
 
+import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.BorderFactory;
@@ -73,6 +74,12 @@ public class GetWellSoon extends CardType {
 	@Override
 	public void onGenerate() {
 		System.out.println("On gen");
+	}
+
+	@Override
+	public void onGenerate(Color c) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -12,8 +12,6 @@ import java.sql.SQLException;
 
 import javax.imageio.ImageIO;
 
-import gui.CardViewer;
-
 
 public class DatabasePopulator {
 

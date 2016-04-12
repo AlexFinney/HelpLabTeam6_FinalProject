@@ -1,4 +1,10 @@
 package Cards;
+import java.awt.Color;
+import java.io.File;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.JPanel;
 
 import gui.CardViewer;
@@ -20,7 +26,10 @@ public abstract class CardType {
 	
 	protected abstract void setUpInfoFormPanel();
 	
-	public abstract void onGenerate();
+	public void onGenerate(){
+		onGenerate(null);
+	}
+	public abstract void onGenerate(Color c);
 	
 	public String toString(){
 		return cardTypeName;
@@ -29,4 +38,22 @@ public abstract class CardType {
 	public CardViewer getCardViewer(){
 		return cardViewer;
 	}
+	
+	boolean shouldPlaySound = false;
+	void playSound() {
+		if(shouldPlaySound){
+		    try {
+		        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(
+		        					new File("audio/tada.wav").getAbsoluteFile());
+		        Clip clip = AudioSystem.getClip();
+		        clip.open(audioInputStream);
+		        clip.start();
+		    } catch(Exception ex) {
+		        System.out.println("Error with playing sound.");
+		        ex.printStackTrace();
+		    }
+		}
+	}
+
+	
 }

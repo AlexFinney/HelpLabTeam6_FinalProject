@@ -14,28 +14,27 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.awt.geom.Line2D;
 import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 
 import Cards.CardType;
 import main.Application;
 import util.ClassUtils;
-import javax.swing.JRadioButton;
-import javax.swing.colorchooser.AbstractColorChooserPanel;
 
 public class MainFrame extends JFrame {
 	
 	JPanel panel1;
 	JPanel panel2;
 	JPanel container;
+	JRadioButton setOwnColor;
+	SimpleColorSelector colorSelector;
 	
 	public MainFrame(){
 		setSize(800, 600);
@@ -51,11 +50,11 @@ public class MainFrame extends JFrame {
 		panel2 = ((CardType)cardTypeComboBox.getSelectedItem()).getInfoFormPanel();
 		panel2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		
-		JPanel colorSelector = new SimpleColorSelector();
+		colorSelector = new SimpleColorSelector();
 		colorSelector.setBounds(20,150,346,75);
 		panel1.add(colorSelector);
 		
-		JRadioButton setOwnColor = new JRadioButton("");
+		setOwnColor = new JRadioButton("");
 		setOwnColor.setBounds(203, 118, 21, 31);
 		setOwnColor.addItemListener(new ItemListener() {
 			@Override
@@ -156,7 +155,15 @@ public class MainFrame extends JFrame {
 			btnGenerate.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					((CardType)getCardSelectionBox().getSelectedItem()).onGenerate();
+					if(setOwnColor.isSelected()){
+						((CardType)getCardSelectionBox().getSelectedItem()).onGenerate();
+					}else{
+						Color c = colorSelector.getColorChosen();
+						((CardType)getCardSelectionBox().getSelectedItem()).onGenerate(c);
+					}
+					
+					
+					
 				}
 			});
 			panel1.add(btnGenerate);

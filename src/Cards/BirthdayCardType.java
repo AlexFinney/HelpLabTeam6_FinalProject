@@ -1,8 +1,12 @@
 package Cards;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -98,9 +102,19 @@ public class BirthdayCardType extends CardType {
 		panel.add(customMessage);
 	}
 
-	@Override
-	public void onGenerate() {
-		System.out.println("Genreate meee");
+	
+	public void onGenerate(Color c) {
+		BufferedImage image;
+		try {
+			image = ImageIO.read(new File("img_testing/cake.png"));
+			CardViewer cv = new CardViewer(image, "Happyyyyyyy  birthhhhhdayyyy!!!!", c);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		playSound();
 	}
 	
 }
