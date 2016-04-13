@@ -19,6 +19,8 @@ public class SimpleColorSelector extends JPanel {
 
 	public SimpleColorSelector() {
 		setLayout(null);
+		colorChosen = Color.pink;
+		
 		
 		JButton btnPink = new JButton("Pink");
 		btnPink.addActionListener(new ActionListener() {
@@ -82,7 +84,7 @@ public class SimpleColorSelector extends JPanel {
 		
 		panel = new JPanel();
 		panel.setLocation(10, 39);
-		panel.setBackground(Color.WHITE);
+		panel.setBackground(Color.PINK);
 		panel.setSize(321,27);
 		panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		panel.setVisible(true);

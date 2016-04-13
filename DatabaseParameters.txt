@@ -1,5 +1,5 @@
-ip:127.0.0.1
-port:3307
+ip:75.65.156.173
+port:3306
 username:Master
 password:webcentric
 dbname:WebCentricDB
