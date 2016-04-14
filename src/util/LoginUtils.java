@@ -19,7 +19,7 @@ public class LoginUtils {
 	public static boolean login(String username, String password){
 		loggingIn = true;
 		
-		Boolean[] outSuccess = {false};
+		Boolean[] outSuccess = {true};
 		String[] outUsername = {""};
 		Thread loginThread = new Thread(new LoginThread(username, password, outSuccess, outUsername));
 		loginThread.start();
