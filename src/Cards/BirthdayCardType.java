@@ -11,6 +11,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
@@ -37,6 +38,7 @@ public class BirthdayCardType extends CardType {
 	JTextField ageField;
 	JComboBox<CardSpecialty> cardSpecSelectionBox;
 	JComboBox<Gender> genderSelectionBox;
+	JScrollPane customMessageWrapper;
 	JTextArea customMessage;
 	
 	
@@ -96,10 +98,11 @@ public class BirthdayCardType extends CardType {
 		panel.add(messageLabel);
 		
 		customMessage = new JTextArea();
-		customMessage.setBounds(itemIndent, itemVertIndent + itemHeight * 5 + itemVertSpacing * 2, itemWidth, itemHeight * 6);
+		customMessageWrapper = new JScrollPane(customMessage);
 		customMessage.setLineWrap(true);
-		customMessage.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
-		panel.add(customMessage);
+		customMessageWrapper.setBounds(itemIndent, itemVertIndent + itemHeight * 5 + itemVertSpacing * 2, itemWidth, itemHeight * 6);
+		customMessageWrapper.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
+		panel.add(customMessageWrapper);
 	}
 
 	
@@ -107,7 +110,8 @@ public class BirthdayCardType extends CardType {
 		BufferedImage image;
 		try {
 			image = ImageIO.read(new File("img_testing/cake.png"));
-			CardViewer cv = new CardViewer(image, "Happyyyyyyy  birthhhhhdayyyy!!!!", c);
+			CardViewer cv = new CardViewer(image, customMessage.getText(), c);
+			//CardViewer cv = new CardViewer(image, "Happyyyyyyy  birthhhhhdayyyy!!!!", c);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

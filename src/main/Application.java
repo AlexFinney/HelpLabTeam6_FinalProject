@@ -32,7 +32,7 @@ public class Application {
 	        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 	}
 
-	static boolean shouldLogin = true;
+	static boolean shouldLogin = false; //true;
 	static void execute(){
 		
 		if(shouldLogin)

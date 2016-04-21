@@ -7,6 +7,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
@@ -26,6 +27,7 @@ public class GetWellSoon extends CardType {
 	
 	JComboBox<CardSpecialty> cardSpecSelectionBox;
 	JTextArea customMessage;
+	JScrollPane customMessageWrapper;
 	
 	
 	int itemWidth = 200;
@@ -65,10 +67,11 @@ public class GetWellSoon extends CardType {
 		panel.add(messageLabel);
 		
 		customMessage = new JTextArea();
-		customMessage.setBounds(itemIndent, itemVertIndent + itemHeight * 4 + itemVertSpacing, itemWidth, itemHeight * 7);
 		customMessage.setLineWrap(true);
-		customMessage.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
-		panel.add(customMessage);
+		customMessageWrapper = new JScrollPane(customMessage);
+		customMessageWrapper.setBounds(itemIndent, itemVertIndent + itemHeight * 4 + itemVertSpacing, itemWidth, itemHeight * 7);
+		customMessageWrapper.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
+		panel.add(customMessageWrapper);
 	}
 
 	@Override
