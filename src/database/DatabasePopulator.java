@@ -15,63 +15,26 @@ import javax.imageio.ImageIO;
 
 public class DatabasePopulator {
 
-	public static void populate(){
+	public static byte[] getBytes(String imageName){
+		
+		BufferedImage image;
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		
 		try {
-			BufferedImage image = ImageIO.read(new File("img_testing/sunrise.png"));
-			
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			image = ImageIO.read(new File(imageName));
 			ImageIO.write(image, "png", baos);
 			
-			byte[] bytes = baos.toByteArray();
-			System.out.println(bytes.length);
-			
-			String stmt = "INSERT INTO test VALUES(?, ?)";
-			Connection c =  MySQLAccess.getConnection();
-			PreparedStatement pstmt = c.prepareStatement(stmt);
-			
-			pstmt.setBytes(1, bytes);
-			pstmt.setInt(2, 2);
-			
-			pstmt.execute();
-			
-			c.close();
-			
-			
-			
-		} catch (IOException | SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	
-	public static void retrieve(){
-		Connection c = MySQLAccess.getConnection();
-		
-		String stmt = "SELECT * FROM test WHERE id=?";
-		
-		PreparedStatement pstmt;
-		try {
-			pstmt = c.prepareStatement(stmt);
-			pstmt.setInt(1, 1);
-			
-			ResultSet rs = pstmt.executeQuery();
-			
-			rs.next();
-			Blob blob = rs.getBlob("pic");
-			System.out.println(blob.length());
-			
-			BufferedImage image = ImageIO.read(blob.getBinaryStream());
-			
-			
-			c.close();
-			//new CardViewer(image);
-			
-			
-		} catch (SQLException | IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	
+		return baos.toByteArray();
 	}
+	
+	
+	
+	
+	
 	
 	
 }

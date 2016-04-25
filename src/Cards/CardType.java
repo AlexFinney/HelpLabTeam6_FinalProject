@@ -39,7 +39,7 @@ public abstract class CardType {
 		return cardViewer;
 	}
 	
-	boolean shouldPlaySound = false;
+	boolean shouldPlaySound = true;
 	void playSound() {
 		if(shouldPlaySound){
 		    try {

@@ -3,8 +3,13 @@ package Cards;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.sql.Blob;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -16,18 +21,15 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 
+import database.MySQLAccess;
 import gui.CardViewer;
 
 public class BirthdayCardType extends CardType {
 
-	private enum CardSpecialty{
-		HUMOR,
-		CARING
-	}
-	
 	private enum Gender{
 		M,
-		F
+		F,
+		U
 	}
 	
 	public BirthdayCardType(){
@@ -36,7 +38,6 @@ public class BirthdayCardType extends CardType {
 	}
 	
 	JTextField ageField;
-	JComboBox<CardSpecialty> cardSpecSelectionBox;
 	JComboBox<Gender> genderSelectionBox;
 	JScrollPane customMessageWrapper;
 	JTextArea customMessage;
@@ -70,17 +71,6 @@ public class BirthdayCardType extends CardType {
 		panel.add(ageField);
 		
 		
-		JLabel cardTypeLabel = new JLabel("Card Type:");
-		cardTypeLabel.setBounds(labelX, itemVertIndent + itemHeight * 2 + itemVertSpacing, itemWidth, itemHeight);
-		cardTypeLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
-		panel.add(cardTypeLabel);
-		
-		cardSpecSelectionBox = new JComboBox<CardSpecialty>();
-		cardSpecSelectionBox.setBounds(itemIndent, itemVertIndent + itemHeight * 2 + itemVertSpacing, itemWidth, itemHeight);
-		cardSpecSelectionBox.addItem(CardSpecialty.HUMOR);
-		cardSpecSelectionBox.addItem(CardSpecialty.CARING);
-		panel.add(cardSpecSelectionBox);
-		
 		JLabel genderLabel = new JLabel("Gender:");
 		genderLabel.setBounds(labelX, itemVertIndent + itemHeight * 3 + itemVertSpacing * 2, itemWidth, itemHeight);
 		genderLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
@@ -90,6 +80,7 @@ public class BirthdayCardType extends CardType {
 		genderSelectionBox.setBounds(itemIndent, itemVertIndent + itemHeight * 3 + itemVertSpacing * 2, itemWidth, itemHeight);
 		genderSelectionBox.addItem(Gender.M);
 		genderSelectionBox.addItem(Gender.F);
+		genderSelectionBox.addItem(Gender.U);
 		panel.add(genderSelectionBox);
 		
 		JLabel messageLabel = new JLabel("Message:");
@@ -107,17 +98,46 @@ public class BirthdayCardType extends CardType {
 
 	
 	public void onGenerate(Color c) {
-		BufferedImage image;
+
+		Connection conn = MySQLAccess.getConnection();
+		
+		String stmt = "SELECT * FROM birthday_cards WHERE gender='" + genderSelectionBox.getSelectedItem().toString() + "';";
+		
+		PreparedStatement pstmt;
 		try {
-			image = ImageIO.read(new File("img_testing/cake.png"));
-			CardViewer cv = new CardViewer(image, customMessage.getText(), c);
-			//CardViewer cv = new CardViewer(image, "Happyyyyyyy  birthhhhhdayyyy!!!!", c);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			pstmt = conn.prepareStatement(stmt);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			Random rand = new Random(System.currentTimeMillis());
+			
+			
+			int rows = 0;
+			if(rs.last()){
+				rows = rs.getRow();
+				rs.beforeFirst();
+			}
+			rs.next();
+			
+			int id = rand.nextInt(rows);
+			
+			for(int i = 0; i < id; i++)
+				rs.next();
+			
+			Blob blob = rs.getBlob("pic");
+			System.out.println(blob.length());
+			
+			BufferedImage image = ImageIO.read(blob.getBinaryStream());
+			
+			
+			conn.close();
+			new CardViewer(image, customMessage.getText(), Color.red);
+			
+			
+		} catch (SQLException | IOException e) {
 			e.printStackTrace();
 		}
-		
-		
+	
 		playSound();
 	}
 	
