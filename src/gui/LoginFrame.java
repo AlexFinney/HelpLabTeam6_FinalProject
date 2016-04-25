@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import main.Application;
 import util.LoginUtils;
 
 public class LoginFrame extends JFrame {
@@ -132,7 +133,7 @@ public class LoginFrame extends JFrame {
 					saveLoginInfoToFile(username, password);
 				setVisible(false);
 				dispose();
-				new MainFrame();
+				Application.setMainFrame(new MainFrame());
 			} else {
 				JOptionPane.showMessageDialog(null, "Incorrect Username or Password!");
 			}

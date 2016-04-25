@@ -19,6 +19,8 @@ import gui.MainFrame;
 public class Application {
 	
 	
+	static MainFrame mainFrame;
+	
 	public static void main(String[] args) throws IOException{
 		try{
 			Application.init();
@@ -31,12 +33,15 @@ public class Application {
 		}
 	}
 	
+	public static MainFrame getMainFrame(){
+		return mainFrame;
+	}
+	
+	public static void setMainFrame(MainFrame frame){
+		mainFrame = frame;
+	}
 
 	private static void init() throws Exception {
-		
-
-		
-		
 	        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 	}
 
@@ -46,7 +51,7 @@ public class Application {
 		if(shouldLogin)
 			new LoginFrame();
 		else
-			new MainFrame();
+			mainFrame = new MainFrame();
 		
 		MySQLAccess.init();		
 

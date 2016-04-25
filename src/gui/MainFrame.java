@@ -172,6 +172,12 @@ public class MainFrame extends JFrame {
 	 static JComboBox<CardType> getCardSelectionBox(){
 		 return cardTypeComboBox;
 	 }
+	 
+	 
+	 public Color getSelectedColor(){
+		 
+		 return setOwnColor.isSelected() ? null : colorSelector.colorChosen;
+	 }
 	
 	 
 	public void paint(Graphics g) {

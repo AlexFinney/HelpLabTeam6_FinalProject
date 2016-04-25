@@ -23,6 +23,8 @@ import javax.swing.border.EtchedBorder;
 
 import database.MySQLAccess;
 import gui.CardViewer;
+import gui.MainFrame;
+import main.Application;
 
 public class BirthdayCardType extends CardType {
 
@@ -131,7 +133,11 @@ public class BirthdayCardType extends CardType {
 			
 			
 			conn.close();
-			new CardViewer(image, customMessage.getText(), Color.red);
+			MainFrame mf = Application.getMainFrame();
+			if(mf == null)
+				System.out.println("nulllllll");
+			
+			new CardViewer(image, customMessage.getText(), Application.getMainFrame().getSelectedColor());
 			
 			
 		} catch (SQLException | IOException e) {
