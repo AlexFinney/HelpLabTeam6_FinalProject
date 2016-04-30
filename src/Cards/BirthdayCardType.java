@@ -70,6 +70,7 @@ public class BirthdayCardType extends CardType {
 		
 		ageField = new JTextField();
 		ageField.setBounds(itemIndent, itemVertIndent + itemHeight, 20, itemHeight);
+		ageField.setToolTipText("Please enter the age");
 		panel.add(ageField);
 		
 		
@@ -83,6 +84,7 @@ public class BirthdayCardType extends CardType {
 		genderSelectionBox.addItem(Gender.M);
 		genderSelectionBox.addItem(Gender.F);
 		genderSelectionBox.addItem(Gender.U);
+		genderSelectionBox.setToolTipText("Please select a gender");
 		panel.add(genderSelectionBox);
 		
 		JLabel messageLabel = new JLabel("Message:");
@@ -92,6 +94,7 @@ public class BirthdayCardType extends CardType {
 		
 		customMessage = new JTextArea();
 		customMessageWrapper = new JScrollPane(customMessage);
+		customMessage.setToolTipText("Please enter a short message for the card");
 		customMessage.setLineWrap(true);
 		customMessageWrapper.setBounds(itemIndent, itemVertIndent + itemHeight * 5 + itemVertSpacing * 2, itemWidth, itemHeight * 6);
 		customMessageWrapper.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));

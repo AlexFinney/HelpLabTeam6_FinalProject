@@ -59,6 +59,7 @@ public class GetWellSoon extends CardType {
 		cardSpecSelectionBox.addItem(CardSpecialty.SYMPATHY);
 		cardSpecSelectionBox.addItem(CardSpecialty.COMPASSION);
 		cardSpecSelectionBox.addItem(CardSpecialty.CARE);
+		cardSpecSelectionBox.setToolTipText("Please select a type of Get Well Soon card");
 		panel.add(cardSpecSelectionBox);
 		
 		JLabel messageLabel = new JLabel("Message:");
@@ -68,6 +69,7 @@ public class GetWellSoon extends CardType {
 		
 		customMessage = new JTextArea();
 		customMessage.setLineWrap(true);
+		customMessage.setToolTipText("Please enter a short message for the card");
 		customMessageWrapper = new JScrollPane(customMessage);
 		customMessageWrapper.setBounds(itemIndent, itemVertIndent + itemHeight * 4 + itemVertSpacing, itemWidth, itemHeight * 7);
 		customMessageWrapper.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
