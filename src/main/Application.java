@@ -56,36 +56,28 @@ public class Application {
 		MySQLAccess.init();		
 
 		
-	//	uploadImageToDB();
+		//uploadImageToDB();
 		
 	}	
 	
 	
 	public static void uploadImageToDB() throws SQLException{
-
-			String imageName = "img_testing/MLP2.png";
-			String gender = "F";
-			String age = "C";
-			int id = 10;
+			int id = 4;
+			String imageName = "img_testing/anv" + id + ".png";
+			
 			
 			System.out.println("Begin upload...");
 			byte[] bytes = DatabasePopulator.getBytes(imageName);
 			
-			String stmt = "INSERT INTO birthday_cards VALUES(?, ?, ?, ?)";
+			String stmt = "INSERT INTO anniversary_cards VALUES(?, ?)";
 			
 			Connection c =  MySQLAccess.getConnection();
 			PreparedStatement pstmt = c.prepareStatement(stmt);
 			
 			
 			pstmt.setBytes(1, bytes);
-			pstmt.setString(2, gender);
-			pstmt.setString(3, age);
-			pstmt.setInt(4, id);
-			
-			
+			pstmt.setInt(2, id);
 			pstmt.execute();
-			
-			
 			c.close();
 
 			System.out.println("Upload complete.");
